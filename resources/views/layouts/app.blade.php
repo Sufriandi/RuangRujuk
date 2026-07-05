@@ -150,6 +150,9 @@
                     <li>
                         <a href="/alur-kua" class="block py-2 px-3 {{ request()->is('alur-kua') ? 'text-emerald-600 font-bold' : 'text-slate-600 hover:text-emerald-600 font-medium' }} rounded md:p-0 premium-transition hover:-translate-y-0.5 relative after:content-[''] after:absolute after:-bottom-1 after:left-0 after:w-0 hover:after:w-full after:h-0.5 after:bg-emerald-600 after:transition-all after:duration-500">Regulasi KUA</a>
                     </li>
+                    <li>
+                        <a href="/tentang" class="block py-2 px-3 {{ request()->is('tentang') ? 'text-emerald-600 font-bold' : 'text-slate-600 hover:text-emerald-600 font-medium' }} rounded md:p-0 premium-transition hover:-translate-y-0.5 relative after:content-[''] after:absolute after:-bottom-1 after:left-0 after:w-0 hover:after:w-full after:h-0.5 after:bg-emerald-600 after:transition-all after:duration-500">Tentang</a>
+                    </li>
                 </ul>
             </div>
         </div>
@@ -178,6 +181,7 @@
                         <li><a href="/" class="hover:text-emerald-400 premium-transition hover:pl-2">Beranda</a></li>
                         <li><a href="/edukasi-talak" class="hover:text-emerald-400 premium-transition hover:pl-2">Edukasi Talak</a></li>
                         <li><a href="/panduan-iddah" class="hover:text-emerald-400 premium-transition hover:pl-2">Panduan Iddah</a></li>
+                        <li><a href="/tentang" class="hover:text-emerald-400 premium-transition hover:pl-2">Tentang Developer</a></li>
                     </ul>
                 </div>
                 <div>
