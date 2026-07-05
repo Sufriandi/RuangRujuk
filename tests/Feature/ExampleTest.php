@@ -60,4 +60,13 @@ class ExampleTest extends TestCase
         $response = $this->get('/tentang');
         $response->assertStatus(200);
     }
+
+    /**
+     * Test if the Hak Asuh Anak page is accessible.
+     */
+    public function test_hak_asuh_anak_page_returns_successful_response(): void
+    {
+        $response = $this->get('/hak-asuh-anak');
+        $response->assertStatus(200);
+    }
 }
