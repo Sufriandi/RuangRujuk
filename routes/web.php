@@ -25,3 +25,7 @@ Route::get('/cek-prosedur', function () {
 Route::get('/tentang', function () {
     return view('ruang_rujuk.tentang');
 });
+
+Route::get('/hak-asuh-anak', function () {
+    return view('ruang_rujuk.hak-asuh-anak');
+});

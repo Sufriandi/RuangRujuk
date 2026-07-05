@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="id" class="scroll-smooth">
+<html lang="id" class="scroll-smooth overflow-x-hidden w-full">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -113,9 +113,27 @@
         }
     </style>
 </head>
-<body class="bg-slate-50 text-slate-800 antialiased flex flex-col min-h-screen" x-data="{ scrolled: false }" @scroll.window="scrolled = (window.pageYOffset > 20)">
+<body class="bg-slate-50 text-slate-800 antialiased flex flex-col min-h-screen overflow-x-hidden w-full" x-data="{ scrolled: false }" @scroll.window="scrolled = (window.pageYOffset > 20)">
 
     <!-- Navbar -->
+    <style>
+        /* Fix Flowbite Dropdown absolute positioning on mobile */
+        @media (max-width: 1023px) {
+            #dropdownEdukasi {
+                position: static !important;
+                transform: none !important;
+                width: 100% !important;
+                box-shadow: none !important;
+                border: none !important;
+                background: transparent !important;
+                padding-left: 0.5rem;
+                margin-top: 0 !important;
+            }
+            #dropdownEdukasi > ul {
+                padding-top: 0;
+            }
+        }
+    </style>
     <nav :class="scrolled ? 'bg-white/80 backdrop-blur-2xl shadow-xl shadow-slate-200/40 py-3 border-slate-200/80' : 'bg-white/40 backdrop-blur-lg shadow-sm py-5 border-slate-200/30'" class="fixed w-full z-50 top-0 start-0 border-b transition-all duration-500 ease-in-out">
         <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto px-6 md:px-12 lg:px-24">
             <a href="/" class="flex items-center space-x-3 rtl:space-x-reverse group premium-transition">
@@ -125,33 +143,54 @@
                 </div>
                 <span class="self-center text-2xl font-extrabold whitespace-nowrap text-slate-800 tracking-tight">Ruang<span class="text-transparent bg-clip-text bg-gradient-to-r from-emerald-600 to-teal-500">Rujuk</span></span>
             </a>
-            <div class="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
-                <a href="/cek-prosedur" class="text-primary-700 hover:text-white bg-primary-50/50 border-2 border-primary-600 hover:bg-primary-600 hover:shadow-lg hover:shadow-primary-500/30 focus:ring-4 focus:outline-none focus:ring-primary-500/20 active:scale-95 font-semibold rounded-xl text-sm px-6 py-2.5 text-center premium-transition transform">
+            <div class="flex lg:order-2 space-x-3 lg:space-x-0 rtl:space-x-reverse">
+                <a href="/cek-prosedur" class="hidden lg:inline-flex text-primary-700 hover:text-white bg-primary-50/50 border-2 border-primary-600 hover:bg-primary-600 hover:shadow-lg hover:shadow-primary-500/30 focus:ring-4 focus:outline-none focus:ring-primary-500/20 active:scale-95 font-semibold rounded-xl text-sm px-6 py-2.5 text-center premium-transition transform">
                     Cek Prosedur
                 </a>
-                <button data-collapse-toggle="navbar-sticky" type="button" class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-slate-500 rounded-xl md:hidden hover:bg-slate-100 focus:outline-none focus:ring-2 focus:ring-slate-200 premium-transition active:scale-95" aria-controls="navbar-sticky" aria-expanded="false">
+                <button data-collapse-toggle="navbar-sticky" type="button" class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-slate-500 rounded-xl lg:hidden hover:bg-slate-100 focus:outline-none focus:ring-2 focus:ring-slate-200 premium-transition active:scale-95" aria-controls="navbar-sticky" aria-expanded="false">
                     <span class="sr-only">Open main menu</span>
                     <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h15M1 7h15M1 13h15"/>
                     </svg>
                 </button>
             </div>
-            <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-sticky">
-                <ul class="flex flex-col p-4 md:p-0 mt-4 font-medium border border-slate-100 rounded-xl bg-white/50 backdrop-blur-sm md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-transparent">
+            <div class="items-center justify-between hidden w-full lg:flex lg:w-auto lg:order-1" id="navbar-sticky">
+                <ul class="flex flex-col p-4 lg:p-0 mt-4 font-medium border border-slate-100 rounded-xl bg-white/50 backdrop-blur-sm lg:space-x-8 rtl:space-x-reverse lg:flex-row lg:mt-0 lg:border-0 lg:bg-transparent">
                     <li>
-                        <a href="/" class="block py-2 px-3 {{ request()->is('/') ? 'text-emerald-600 font-bold' : 'text-slate-600 hover:text-emerald-600 font-medium' }} rounded md:p-0 premium-transition hover:-translate-y-0.5 relative after:content-[''] after:absolute after:-bottom-1 after:left-0 after:w-0 hover:after:w-full after:h-0.5 after:bg-emerald-600 after:transition-all after:duration-500">Beranda</a>
+                        <a href="/" class="block py-2 px-3 {{ request()->is('/') ? 'text-emerald-600 font-bold' : 'text-slate-600 hover:text-emerald-600 font-medium' }} rounded lg:p-0 premium-transition hover:-translate-y-0.5 relative after:content-[''] after:absolute after:-bottom-1 after:left-0 after:w-0 hover:after:w-full after:h-0.5 after:bg-emerald-600 after:transition-all after:duration-500">Beranda</a>
                     </li>
                     <li>
-                        <a href="/edukasi-talak" class="block py-2 px-3 {{ request()->is('edukasi-talak') ? 'text-emerald-600 font-bold' : 'text-slate-600 hover:text-emerald-600 font-medium' }} rounded md:p-0 premium-transition hover:-translate-y-0.5 relative after:content-[''] after:absolute after:-bottom-1 after:left-0 after:w-0 hover:after:w-full after:h-0.5 after:bg-emerald-600 after:transition-all after:duration-500">Edukasi Talak</a>
+                        <button id="dropdownEdukasiLink" data-dropdown-toggle="dropdownEdukasi" data-dropdown-trigger="hover" class="flex items-center justify-between w-full py-2 px-3 {{ request()->is('edukasi-talak') || request()->is('hak-asuh-anak') ? 'text-emerald-600 font-bold' : 'text-slate-600 hover:text-emerald-600 font-medium' }} rounded lg:w-auto lg:p-0 premium-transition relative after:content-[''] after:absolute after:-bottom-1 after:left-0 after:w-0 hover:after:w-full after:h-0.5 after:bg-emerald-600 after:transition-all after:duration-500">
+                            Edukasi
+                            <svg class="w-2.5 h-2.5 ms-1.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4"/>
+                            </svg>
+                        </button>
+                        <!-- Dropdown menu -->
+                        <div id="dropdownEdukasi" class="z-50 hidden font-normal bg-white/90 backdrop-blur-md lg:divide-y lg:divide-slate-100 lg:rounded-2xl lg:shadow-xl lg:shadow-slate-200/50 lg:border border-slate-100 w-52 overflow-hidden">
+                            <ul class="py-2 text-sm text-slate-600 font-medium" aria-labelledby="dropdownEdukasiLink">
+                              <li>
+                                <a href="/edukasi-talak" class="block px-5 py-3 hover:bg-emerald-50 hover:text-emerald-600 transition-colors {{ request()->is('edukasi-talak') ? 'text-emerald-600 bg-emerald-50/50 font-bold' : '' }}">Edukasi Talak</a>
+                              </li>
+                              <li>
+                                <a href="/hak-asuh-anak" class="block px-5 py-3 hover:bg-emerald-50 hover:text-emerald-600 transition-colors {{ request()->is('hak-asuh-anak') ? 'text-emerald-600 bg-emerald-50/50 font-bold' : '' }}">Hak Asuh Anak</a>
+                              </li>
+                            </ul>
+                        </div>
                     </li>
                     <li>
-                        <a href="/panduan-iddah" class="block py-2 px-3 {{ request()->is('panduan-iddah') ? 'text-emerald-600 font-bold' : 'text-slate-600 hover:text-emerald-600 font-medium' }} rounded md:p-0 premium-transition hover:-translate-y-0.5 relative after:content-[''] after:absolute after:-bottom-1 after:left-0 after:w-0 hover:after:w-full after:h-0.5 after:bg-emerald-600 after:transition-all after:duration-500">Panduan Iddah</a>
+                        <a href="/panduan-iddah" class="block py-2 px-3 {{ request()->is('panduan-iddah') ? 'text-emerald-600 font-bold' : 'text-slate-600 hover:text-emerald-600 font-medium' }} rounded lg:p-0 premium-transition hover:-translate-y-0.5 relative after:content-[''] after:absolute after:-bottom-1 after:left-0 after:w-0 hover:after:w-full after:h-0.5 after:bg-emerald-600 after:transition-all after:duration-500">Panduan Iddah</a>
                     </li>
                     <li>
-                        <a href="/alur-kua" class="block py-2 px-3 {{ request()->is('alur-kua') ? 'text-emerald-600 font-bold' : 'text-slate-600 hover:text-emerald-600 font-medium' }} rounded md:p-0 premium-transition hover:-translate-y-0.5 relative after:content-[''] after:absolute after:-bottom-1 after:left-0 after:w-0 hover:after:w-full after:h-0.5 after:bg-emerald-600 after:transition-all after:duration-500">Regulasi KUA</a>
+                        <a href="/alur-kua" class="block py-2 px-3 {{ request()->is('alur-kua') ? 'text-emerald-600 font-bold' : 'text-slate-600 hover:text-emerald-600 font-medium' }} rounded lg:p-0 premium-transition hover:-translate-y-0.5 relative after:content-[''] after:absolute after:-bottom-1 after:left-0 after:w-0 hover:after:w-full after:h-0.5 after:bg-emerald-600 after:transition-all after:duration-500">Regulasi KUA</a>
                     </li>
                     <li>
-                        <a href="/tentang" class="block py-2 px-3 {{ request()->is('tentang') ? 'text-emerald-600 font-bold' : 'text-slate-600 hover:text-emerald-600 font-medium' }} rounded md:p-0 premium-transition hover:-translate-y-0.5 relative after:content-[''] after:absolute after:-bottom-1 after:left-0 after:w-0 hover:after:w-full after:h-0.5 after:bg-emerald-600 after:transition-all after:duration-500">Tentang</a>
+                        <a href="/tentang" class="block py-2 px-3 {{ request()->is('tentang') ? 'text-emerald-600 font-bold' : 'text-slate-600 hover:text-emerald-600 font-medium' }} rounded lg:p-0 premium-transition hover:-translate-y-0.5 relative after:content-[''] after:absolute after:-bottom-1 after:left-0 after:w-0 hover:after:w-full after:h-0.5 after:bg-emerald-600 after:transition-all after:duration-500">Tentang</a>
+                    </li>
+                    <li class="lg:hidden mt-2 pt-4 border-t border-slate-100/50">
+                        <a href="/cek-prosedur" class="block w-full text-center text-primary-700 bg-primary-50/80 border-2 border-primary-600 hover:bg-primary-600 hover:text-white font-semibold rounded-xl text-sm px-6 py-3 premium-transition">
+                            Cek Prosedur
+                        </a>
                     </li>
                 </ul>
             </div>
@@ -180,6 +219,7 @@
                     <ul class="text-slate-400 font-medium space-y-3">
                         <li><a href="/" class="hover:text-emerald-400 premium-transition hover:pl-2">Beranda</a></li>
                         <li><a href="/edukasi-talak" class="hover:text-emerald-400 premium-transition hover:pl-2">Edukasi Talak</a></li>
+                        <li><a href="/hak-asuh-anak" class="hover:text-emerald-400 premium-transition hover:pl-2">Hak Asuh Anak</a></li>
                         <li><a href="/panduan-iddah" class="hover:text-emerald-400 premium-transition hover:pl-2">Panduan Iddah</a></li>
                         <li><a href="/tentang" class="hover:text-emerald-400 premium-transition hover:pl-2">Tentang Developer</a></li>
                     </ul>
