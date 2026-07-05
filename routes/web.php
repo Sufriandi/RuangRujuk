@@ -21,3 +21,7 @@ Route::get('/alur-kua', function () {
 Route::get('/cek-prosedur', function () {
     return view('ruang_rujuk.cek-prosedur');
 });
+
+Route::get('/tentang', function () {
+    return view('ruang_rujuk.tentang');
+});
